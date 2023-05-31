@@ -50,26 +50,30 @@ class data_aggregation:
         temp_df = pd.DataFrame(columns = [])
         listofdictjson = json.loads(unpr_data)
 
-
+        lower_bound = 0
         for i in range(df.shape[0]):
-            x = pd.read_json(listofdictjson[i]['value'])
-            x['reserve_0'] = x.r[0]
-            x['reserve_1'] = x.r[1]
-            x.drop('r', axis = 1, inplace = True)
-            x.drop(1, inplace=True)
-            temp_df = pd.concat([temp_df, x], ignore_index=True)
-        df = pd.concat([df, temp_df], axis=1)
+            try:
+                x = pd.read_json(listofdictjson[i]['value'])
+                x['reserve_0'] = x.r[0]
+                x['reserve_1'] = x.r[1]
+                x.drop('r', axis=1, inplace=True)
+                x.drop(1, inplace=True)
+                temp_df = pd.concat([temp_df, x], ignore_index=True)
+            except Exception as e:
+                lower_bound += 1
+                print(f"An error occurred: {str(e)}")
+                continue
 
 
-
-
+        df = df.iloc[lower_bound:].reset_index(drop=True, inplace=False)
+        df['reserve_0'] = temp_df['reserve_0']
+        df['reserve_1'] = temp_df['reserve_1']
         df['time'] = pd.to_datetime(df['time'], unit='ms')
         df['reserve_0'] = pd.to_numeric(df['reserve_0'], errors='coerce')
-        df['reserve_1']  = pd.to_numeric(df['reserve_1'], errors='coerce')
+        df['reserve_1'] = pd.to_numeric(df['reserve_1'], errors='coerce')
         df = df.loc[df['reserve_0'].notna() & df['reserve_1'].notna()]
-        df.set_index('time', inplace = True)
+        df.set_index('time', inplace=True)
         df = df.sort_index(level='date')
-
 
         fig = px.line(df, x = df.index, y = 'reserve_0')
         display(fig)
@@ -96,3 +100,8 @@ class data_aggregation:
 
     def get_indicator(self, name):
         return self.indicators[name]
+
+
+my_data = data_aggregation('https://europe-west1-hype-dev.cloudfunctions.net/storage-timeline-all?format=string&schema=ethereum.lovelyswap-v4.lovely.finance&timeLine=0x3aB9323992DFf9231D40E45C4AE009db1a35e40b')
+my_data.get_data()
+my_data.group_by_time('D', length = 14, smooth_step=6, indicators = ['RSI'])

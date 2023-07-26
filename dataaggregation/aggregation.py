@@ -73,7 +73,7 @@ class data_aggregation:
         df['reserve_1'] = pd.to_numeric(df['reserve_1'], errors='coerce')
         df = df.loc[df['reserve_0'].notna() & df['reserve_1'].notna()]
         df.set_index('time', inplace=True)
-        df = df.sort_index(level='date')
+        df = df.sort_index(level='time')
 
         fig = px.line(df, x = df.index, y = 'reserve_0')
         display(fig)

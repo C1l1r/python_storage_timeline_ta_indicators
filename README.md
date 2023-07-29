@@ -37,8 +37,10 @@ Should only be used with a great understanding of features of data it was traine
 
 ### CODE EXAMPLE ###
 
-```anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
-anms.detect_anomalies(threshold=1.25)```
+```
+anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
+anms.detect_anomalies(threshold=1.25)
+```
 
 
 

@@ -38,14 +38,19 @@ Should only be used with a great understanding of features of data it was traine
 ### CODE EXAMPLE ###
 
 ```
+from dataaggregation.aggregation import lstm_anomaly_detection
+
 anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
 anms.detect_anomalies(threshold=1.25)
 ```
 
 #### Output example####
 
-![Output sample](https://github.com/C1l1r/python_storage_timeline_ta_indicators/blob/lstm_functional_branch/detected%20anomalies%20sample2.png?raw=true)
+![Output sample](https://github.com/C1l1r/python_storage_timeline_ta_indicators/blob/lstm_functional_branch/detected%20anomalies%20sample.png?raw=true)
 
+#### NOW AVALIABLE ON PIP! #####
+
+pip install python_storage_timeline_ta_indicators
 
 
 

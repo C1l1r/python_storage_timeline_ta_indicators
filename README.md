@@ -31,9 +31,14 @@ my_data.get_data()
 my_data.print_indicators('D', length = 14, smooth_step=6, indicators = ['RSI'])
 ```
 
+## Anomaly detection ##
 
+Should only be used with a great understanding of features of data it was trained on. Works best on a volatile time series with high liquidity.  
 
+### CODE EXAMPLE ###
 
+```anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
+anms.detect_anomalies(threshold=1.25)```
 
 
 

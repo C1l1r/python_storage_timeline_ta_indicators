@@ -31,9 +31,26 @@ my_data.get_data()
 my_data.print_indicators('D', length = 14, smooth_step=6, indicators = ['RSI'])
 ```
 
+## Anomaly detection ##
 
+Should only be used with a great understanding of features of data it was trained on. Works best on a volatile time series with high liquidity.  
 
+### CODE EXAMPLE ###
 
+```
+from dataaggregation.aggregation import lstm_anomaly_detection
+
+anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
+anms.detect_anomalies(threshold=1.25)
+```
+
+#### Output example####
+
+![Output sample](https://github.com/C1l1r/python_storage_timeline_ta_indicators/blob/lstm_functional_branch/detected%20anomalies%20sample.png?raw=true)
+
+#### NOW AVALIABLE ON PIP! #####
+
+pip install python_storage_timeline_ta_indicators
 
 
 

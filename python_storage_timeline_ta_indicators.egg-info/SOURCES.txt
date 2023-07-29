@@ -1,6 +1,8 @@
+README.md
 setup.py
 dataaggregation/__init__.py
 dataaggregation/aggregation.py
+dataaggregation/lstm_anomly_detection.py
 python_storage_timeline_ta_indicators.egg-info/PKG-INFO
 python_storage_timeline_ta_indicators.egg-info/SOURCES.txt
 python_storage_timeline_ta_indicators.egg-info/dependency_links.txt

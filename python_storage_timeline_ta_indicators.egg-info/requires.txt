@@ -3,3 +3,7 @@ numpy
 pandas
 ta-lib
 pandas_ta
+tensorflow
+matplotlib
+seaborn
+sklearn

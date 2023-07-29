@@ -6,7 +6,7 @@ Values in a storage expected to be in a json format with a following structure:
 
 Class data aggregation takes link as an argument to create instance of a database. The data from the database could be updated manualy via ```update``` function.
 
-To calculate ta indicators function ```group by time``` should be used that takes next arguments:
+To calculate ta indicators function ```print_indicators``` should be used that takes next arguments:
 
 
 ```time``` in "2D", "4S" or "W" format that denotes length of even interwals time series will be divided.
@@ -19,7 +19,7 @@ To calculate ta indicators function ```group by time``` should be used that take
 calculates all of listed.
 
 **IMPORTANT**
-Some indicators require additional arguments. They should be added to ```group by time``` function with names used in ```ta-lib```.
+Some indicators require additional arguments. They should be added to ```print_indicators``` function with names used in ```ta-lib```.
 
 ### CODE EXAMPLE ###
 
@@ -28,7 +28,7 @@ from dataaggregation.aggregation import data_aggregation
 
 my_data = data_aggregation('thelinkgoeshere')
 my_data.get_data()
-my_data.group_by_time('D', length = 14, smooth_step=6, indicators = ['RSI'])
+my_data.print_indicators('D', length = 14, smooth_step=6, indicators = ['RSI'])
 ```
 
 

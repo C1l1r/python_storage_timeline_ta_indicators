@@ -42,6 +42,11 @@ anms = lstm_anomaly_detection(url = 'thelinkgoeshere')
 anms.detect_anomalies(threshold=1.25)
 ```
 
+#### Output example####
+
+![Output sample](https://github.com/C1l1r/python_storage_timeline_ta_indicators/blob/lstm_functional_branch/detected%20anomalies%20sample2.png?raw=true)
+
+
 
 
 

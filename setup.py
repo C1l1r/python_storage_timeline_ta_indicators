@@ -12,7 +12,7 @@ setup(name='python_storage_timeline_ta_indicators',
       author_email='c1l1rua@gmail.com',
       url='https://github.com/C1l1r/python_storage_timeline_ta_indicators',
       packages=find_packages(),
-      install_requires=['plotly', 'numpy', 'pandas', 'ta-lib', 'pandas_ta']
+      install_requires=['plotly', 'numpy', 'pandas', 'ta-lib', 'pandas_ta', 'tensorflow', 'matplotlib', 'seaborn', 'sklearn', '']
      )
 #%%
 

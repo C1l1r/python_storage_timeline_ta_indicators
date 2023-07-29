@@ -23,7 +23,6 @@ class data_aggregation:
         'ROC': ta.roc,
         'MA': lambda *args, **kwargs: (ta.sma(*args, **kwargs), ta.ema(*args, **kwargs))
 
-
     }
 
     def __init__(self, url):
@@ -80,25 +79,27 @@ class data_aggregation:
         self.data=df
 
 
-    def group_by_time(self, time, length,  indicators = None, **kwargs):
-        if indicators is None:
-            indicators=list(self.indicators.keys())
-
-        params = {
+    def group_by_time(self, time):
+        return  {
             'close' : self.data.resample(time).last().dropna()['reserve_0'],
             'open' : self.data.resample(time).first().dropna()['reserve_0'],
             'low' : self.data.resample(time).min().dropna()['reserve_0'],
             'high' : self.data.resample(time).max().dropna()['reserve_0']
         }
 
+    def print_indicators(self, time, length, indicators = None,**kwargs):
+        if indicators is None:
+            indicators=list(self.indicators.keys())
+
+        params = self.group_by_time(time)
+
         for i in indicators:
             print(f'--------{i}--------')
-            print(self.get_indicator(i)(length =length, **params, **kwargs ))
+            print(self.indicators[i](length =length, **params, **kwargs ))
             print(f'----------------')
 
 
 
-    def get_indicator(self, name):
-        return self.indicators[name]
+
 
 

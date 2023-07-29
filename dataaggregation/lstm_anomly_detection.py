@@ -8,42 +8,6 @@ import json
 import numpy as np
 
 
-
-
-
-
-
-
-
-
-
-#
-# THRESHOLD = 1.25
-
-# test_score_df = pd.DataFrame(index=test_data[TIME_STEPS:].index)
-# test_score_df['loss'] = test_mae_loss
-# test_score_df['threshold'] = THRESHOLD
-# test_score_df['anomaly'] = test_score_df.loss > test_score_df.threshold
-# test_score_df['reserve_0'] = test_data[TIME_STEPS:].reserve_0
-# anomalies = test_score_df[test_score_df.anomaly == True]
-
-
-#VISUALIZATION
-# plt.plot(
-#     test_data[TIME_STEPS:].index,
-#     scaler.inverse_transform(test_data[TIME_STEPS:].reserve_0.values.reshape(1,-1)).reshape(-1),
-#     label='reserve'
-# );
-# sns.scatterplot(
-#     x = anomalies.index,
-#     y = scaler.inverse_transform(anomalies.reserve_0.values.reshape(1,-1)).reshape(-1),
-#     label = 'anomaly',
-#     color = sns.color_palette()[3]
-# );
-# plt.xticks(rotation = 25)
-# plt.show()
-
-
 class lstm_anomaly_detection():
 
     def __init__(self, url,  model_name = "models/lstm_for_ad.h5"):
@@ -86,6 +50,7 @@ class lstm_anomaly_detection():
         test_score_df['anomaly'] = test_score_df.loss > test_score_df.threshold
         test_score_df['reserve_0'] = aggregated_data[TIME_STEPS:].reserve_0
         anomalies = test_score_df[test_score_df.anomaly == True]
+        print(anomalies)
 
         plt.plot(
             aggregated_data[TIME_STEPS:].index,
@@ -103,6 +68,6 @@ class lstm_anomaly_detection():
 
 
 anms = lstm_anomaly_detection(url = 'https://europe-west1-hype-dev.cloudfunctions.net/storage-timeline-all?format=string&schema=ethereum.lovelyswap-v4.lovely.finance&timeLine=0x3aB9323992DFf9231D40E45C4AE009db1a35e40b')
-anms.detect_anomalies()
+anms.detect_anomalies(threshold=1.25)
 
 
